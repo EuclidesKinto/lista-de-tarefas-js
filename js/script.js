@@ -1,15 +1,13 @@
 let input = document.querySelector('input[name=tarefa]');
 let btn = document.querySelector('#botao');
 let lista = document.querySelector('#lista');
+let card = document.querySelector('.card');
 
-let tarefas = [
-    'Jogar Bola 1',
-    'Jogar Bola 2',
-    'Jogar Bola 3',
-    'Jogar Bola 4',
-];
+let tarefas = [];
 
 function renderizarTarefas(){
+    //Limpar a lista antes de renderizar novamente
+    lista.innerHTML = '';
     for (tarefa of tarefas) {
         // Criar o item da lista
         let itemLista = document.createElement('li');
@@ -24,7 +22,37 @@ function renderizarTarefas(){
         itemLista.appendChild(itemTexto);
 
         lista.appendChild(itemLista);
+
     }
 }
+// Executando a função para renderizar a lista de terefas
+//renderizarTarefas();
 
-renderizarTarefas();
+btn.onclick = function(){
+    let novaTarefa = input.value;
+
+    if(novaTarefa !== ""){
+        tarefas.push(novaTarefa);
+        renderizarTarefas();
+        input.value = '';
+        removeSpan();
+    }else{
+        removeSpan();
+        let span = document.createElement('span');
+        span.setAttribute('class', 'alert alert-warning');
+
+        let msg = document.createTextNode('Você precisa informar a Tarefa');
+
+        span.appendChild(msg);
+        card.appendChild(span);
+        
+    }    
+}
+
+function removeSpan(){
+    let spans = document.querySelectorAll('span');
+
+    for (let i = 0; i < spans.length; i++) {
+        card.removeChild(spans[i]);        
+    }
+}
