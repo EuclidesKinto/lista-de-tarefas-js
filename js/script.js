@@ -15,6 +15,10 @@ function renderizarTarefas(){
         // Adicionar classes no item da lista
         itemLista.setAttribute('class', 'list-group-item list-group-item-action');
 
+        itemLista.onclick = function(){
+            revomeTerefa(this);
+        };
+
         //Criar o texto
         let itemTexto = document.createTextNode(tarefa);
 
@@ -55,4 +59,10 @@ function removeSpan(){
     for (let i = 0; i < spans.length; i++) {
         card.removeChild(spans[i]);        
     }
+}
+
+function revomeTerefa(tar){
+    // console.log(tar.textContent);
+    tarefas.splice(tarefas.indexOf(tar.textContent), 1);
+    renderizarTarefas();
 }
