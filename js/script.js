@@ -3,7 +3,7 @@ let btn = document.querySelector('#botao');
 let lista = document.querySelector('#lista');
 let card = document.querySelector('.card');
 
-let tarefas = JSON.parse(localStorage.getItem('tarefas'));
+let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
 function renderizarTarefas(){
     //Limpar a lista antes de renderizar novamente
